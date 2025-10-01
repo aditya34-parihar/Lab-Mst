@@ -1,0 +1,29 @@
+CREATE TABLE FeePayment (
+    Pay_id          INT             PRIMARY KEY,
+    S_name          VARCHAR(100)    , 
+    Amount          DECIMAL(10, 2)  ,  
+    Payment_date    DATE             
+);
+
+BEGIN;  
+
+INSERT INTO FeePayment (Pay_id, S_name, Amount, Payment_date) 
+VALUES (1, 'Adi', 5000, '2025-10-01');
+
+INSERT INTO FeePayment (Pay_id, S_name, Amount, Payment_date) 
+VALUES (2, 'Arush', 4500, '2025-10-01');
+
+COMMIT;
+
+SELECT * FROM FeePayment 
+WHERE Pay_id IN (1, 2);
+
+BEGIN;
+
+INSERT INTO FeePayment (Pay_id, S_name, Amount, Payment_date) 
+VALUES (3, 'Satpal', 3000, '2025-10-01');
+
+ROLLBACK;
+
+SELECT * FROM FeePayment 
+WHERE Pay_id = 3;
